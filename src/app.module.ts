@@ -1,3 +1,4 @@
+import { ApiModule } from '@/api/api.module'
 import { AppController } from '@/app.controller'
 import { AppService } from '@/app.service'
 import { TypeOrmConfigService } from '@/config/typeOrmConfig.service'
@@ -12,6 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    ApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
