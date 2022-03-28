@@ -8,7 +8,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { plainToInstance } from 'class-transformer'
 import { Repository } from 'typeorm'
 
 @Injectable()
@@ -27,12 +26,12 @@ export class AuthService {
       throw new ConflictException()
     }
 
-    const registerUser = plainToInstance(User, {
+    const registerUser = {
       username,
       email,
       name,
-      password: this.provider.encodePassword(password),
-    })
+      password: await this.provider.encodePassword(password),
+    }
 
     return this.repository.save(registerUser, { reload: true })
   }
