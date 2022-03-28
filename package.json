@@ -76,5 +76,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "overrides": {
+    "minimist": "^1.2.6"
   }
 }
